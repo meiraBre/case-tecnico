@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 import pandas as pd
+from datetime import datetime
 
 # --- Carregando os dados dos CSVs ---
 users_df = pd.read_csv("users.csv")     
@@ -10,15 +11,15 @@ metrics_df = pd.read_csv("metrics.csv")
 app = FastAPI(title="Case Técnico - API de Métricas")
 
 # --- Função auxiliar para autenticar usuário ---
-def authenticate_user(username: str, password: str):
+def authenticate_user(email: str, password: str):
     """
     Verifica se o usuário existe no CSV e se a senha confere.
     Retorna o papel do usuário se válido, senão None.
     """
-    user = users_df[(users_df["username"] == username) & (users_df["password"] == password)]
-    if not user.empty:
-        return user.iloc[0]["role"]  # retorna 'admin' ou outro papel
-    return None
+    user = users_df[(users_df["email"] == email) & (users_df["password"] == password)]
+    if user.empty:
+        raise HTTPException(status_code=401, detail="Usuário ou senha inválidos")
+    return user.iloc[0]["role"]
 
 
 # --- Endpoint de Login ---
@@ -26,7 +27,7 @@ def authenticate_user(username: str, password: str):
 def login(form_data: OAuth2PasswordRequestForm = Depends()):
     """
     Faz login do usuário.
-    Usa email como 'username' e senha como 'password'.
+    Usa email e senha como 'password'.
     """
     role = authenticate_user(form_data.username, form_data.password)
     if not role:
