@@ -12,9 +12,7 @@
 ---
 
 ## Contextualização
-A área de engenharia desempenha um papel crucial no desenvolvimento de software e na criação de soluções tecnológicas tanto para os clientes quanto para a empresa. Este case técnico propõe a construção construir uma aplicação web para gestores de uma
-agência de Marketing Digital, onde serão exibidos dados de performance de
-diversas contas da agência. Nesse arquivo explico como foi a construção da API e como você pode utilzar.
+#### A área de engenharia desempenha um papel crucial no desenvolvimento de software e na criação de soluções tecnológicas tanto para os clientes quanto para a empresa. Este case técnico propõe a construção construir uma aplicação web para gestores de uma agência de Marketing Digital, onde serão exibidos dados de performance de diversas contas da agência. Nesse arquivo explico como foi a construção da API e como você pode utilzar.
 ---
 
 ## 1. Passo a passo da construção da API e ferramentas utilizadas
@@ -64,9 +62,9 @@ Para evitar subir arquivos grandes no repositório:
    ```
 3. Disponibilizar o CSV no Google Drive:
 
-   * [📂 Link para metrics.csv](https://drive.google.com/)
+   * [📂 Link para metrics.csv](https://drive.google.com/drive/folders/1wvkKhZcoikv4z4l40LCoj4-YVowotmQp?usp=sharing)
 
-⚠️ **Alternativa**: em um projeto real, poderia-se utilizar **banco de dados** (ex: PostgreSQL, MySQL) ou **armazenamento em nuvem** (ex: S3) em vez de CSV.
+#### ⚠️ **Alternativa**: em um projeto real, poderia-se utilizar **banco de dados** (ex: PostgreSQL, MySQL) ou **armazenamento em nuvem** (ex: S3) em vez de CSV.
 ---
 
 ## 3. Requisitos da API
@@ -164,6 +162,7 @@ Acesse: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 ---
 
 ## 7. Utilização de IA
+
 A API foi desenvolvida com o suporte de **IA (ChatGPT)** para auxílio em boas práticas de organização, escrita de documentação e estruturação do código. Todo o código e decisões técnicas foram validados manualmente.
 ---
 
