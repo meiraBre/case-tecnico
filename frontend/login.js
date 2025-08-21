@@ -11,11 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Fazendo requisição à API
             const res = await fetch("http://127.0.0.1:8000/login", {
                 method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams({
-                    username: email,   // OAuth2 usa 'username' no lugar de email
-                    password: password
-                })
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email, password: password })
             });
 
             if (!res.ok) {
@@ -24,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await res.json();
 
-            // Exemplo: salvando token no localStorage
-            localStorage.setItem("token", data.access_token);
+            // Salva email e role no localStorage
             localStorage.setItem("user", email);
+            localStorage.setItem("role", data.role);
 
             // Redireciona para o dashboard
             window.location.href = "dashboard.html";
@@ -36,3 +33,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+

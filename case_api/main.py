@@ -1,48 +1,45 @@
-from fastapi import FastAPI, HTTPException, Depends
-from fastapi.security import OAuth2PasswordRequestForm
-import pandas as pd
-from datetime import datetime
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+import pandas as pd
 
+# --- Modelo para o corpo do login ---
+class LoginData(BaseModel):
+    email: str
+    password: str
+
+app = FastAPI(title="Case Técnico - API de Métricas")
+
+# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # ou ["http://127.0.0.1:5500"] para restringir
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# --- Carregando os dados dos CSVs ---
-users_df = pd.read_csv("users.csv")     
-metrics_df = pd.read_csv("metrics.csv")  
+# --- Carrega a leitura do arquivo fora da função, para melhorar a performance ---
+users_df = pd.read_csv("users.csv")
+metrics_df = pd.read_csv("metrics.csv")
 
-# Criando a aplicação FastAPI
-app = FastAPI(title="Case Técnico - API de Métricas")
+# --- Função que valida usuário ---
+def authenticate_user(login_data: LoginData):
+    email = login_data.email
+    password = login_data.password  
 
-# --- Função auxiliar para autenticar usuário ---
-def authenticate_user(email: str, password: str):
-    """
-    Verifica se o usuário existe no CSV e se a senha confere.
-    Retorna o papel do usuário se válido, senão None.
-    """
     user = users_df[(users_df["email"] == email) & (users_df["password"] == password)]
-    if user.empty:
-        raise HTTPException(status_code=401, detail="Usuário ou senha inválidos")
-    return user.iloc[0]["role"]
-
+    if not user.empty:
+        return user.iloc[0]["role"]
+    return None
 
 # --- Endpoint de Login ---
 @app.post("/login")
-def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    """
-    Faz login do usuário.
-    Usa email e senha como 'password'.
-    """
-    role = authenticate_user(form_data.username, form_data.password)
+def login(data: LoginData):
+    role = authenticate_user(data)
     if not role:
         raise HTTPException(status_code=401, detail="Credenciais inválidas")
     return {"message": "Login realizado com sucesso!", "role": role}
-
 
 # --- Endpoint para listar métricas ---
 @app.get("/metrics")
@@ -57,8 +54,9 @@ def get_metrics(role: str, order_by: str = None, start_date: str = None, end_dat
     df = metrics_df.copy()
 
     # --- Filtro por data ---
+    df["date"] = pd.to_datetime(df["date"])
     if start_date and end_date:
-        df = df[(df["date"] >= start_date) & (df["date"] <= end_date)]
+        df = df[(df["date"] >= pd.to_datetime(start_date)) & (df["date"] <= pd.to_datetime(end_date))]
 
     # --- Ordenação por coluna ---
     if order_by and order_by in df.columns:
