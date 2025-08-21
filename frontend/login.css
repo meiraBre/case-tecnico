@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: #151A28;
+    color: white;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.login{
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1A0856;
+    width: 25%;
+    padding: 20px;
+    margin: 200px;
+} 
+.login h2 {
+    margin-bottom: 10px;
+}
+.login input {
+    padding: 5px;
+    margin: 5px;
+}
+.login button {
+    padding: 5px;
+    margin: 5px;
+}
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+
+}
