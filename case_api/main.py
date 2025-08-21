@@ -2,6 +2,15 @@ from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 import pandas as pd
 from datetime import datetime
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ou ["http://127.0.0.1:5500"] para restringir
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Carregando os dados dos CSVs ---
 users_df = pd.read_csv("users.csv")     
