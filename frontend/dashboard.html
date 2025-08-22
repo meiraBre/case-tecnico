@@ -1,21 +1,59 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="./dashboard.css">
+  <meta charset="utf-8" />
+  <title>Dashboard: Métricas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Link para o CSS -->
+  <link rel="stylesheet" href="./dashboard.css" />
 </head>
 <body>
   <header>
-    <h1>Bem-vindo, <span id="username"></span></h1>
+    <h1>Dashboard</h1>
+    <div>
+      Bem-vindo(a), <span id="username"></span>
+      <button id="logoutBtn">Sair</button>
+    </div>
   </header>
+
   <main>
-    <table id="dataTable" border="1">
-      <thead id="thead"></thead>
-      <tbody id="tbody"></tbody>
-    </table>
+    <section class="dashboard-container">
+      <div class="controls">
+        <label>
+          Ordenar por:
+          <select id="orderBy">
+            <option value="">(sem ordenação)</option>
+            <option value="date">date</option>
+            <option value="campaign">campaign</option>
+            <option value="impressions">impressions</option>
+            <option value="clicks">clicks</option>
+            <option value="conversions">conversions</option>
+            <option value="cost_micros">cost_micros</option>
+          </select>
+        </label>
+        <label>
+          Início: <input type="date" id="startDate" />
+        </label>
+        <label>
+          Fim: <input type="date" id="endDate" />
+        </label>
+        <button id="applyFilters">Aplicar</button>
+        <span id="status" class="muted"></span>
+      </div>
+
+      <table id="metricsTable">
+        <thead id="thead"></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </section>
   </main>
-  <script src="./dashboard.js"></script>
+
+  <footer>
+    <p>&copy; 2025 - Dashboard</p>
+  </footer>
+
+  <script src="./dashboard.js" defer></script>
 </body>
 </html>
+
+
