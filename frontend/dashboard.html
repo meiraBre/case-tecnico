@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard: Métricas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./dashboard.css" />
+</head>
+<body>
+  <header>
+    <h1>Dashboard</h1>
+    <div>
+      Bem-vindo(a), <span id="username"></span>
+      <button id="logoutBtn">Sair</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="dashboard-container">
+      <div class="controls">
+        <label>
+          Ordenar por:
+          <select id="orderBy">
+            <option value="">(sem ordenação)</option>
+            <option value="date">Data</option>
+            <option value="campaign_id">Campanha</option>
+            <option value="account_id">Conta</option>
+            <option value="impressions">Impressões</option>
+            <option value="clicks">Cliques</option>
+            <option value="conversions">Conversões</option>
+            <option value="cost_micros">Custo (micros)</option>
+            <option value="interactions">Interações</option>
+          </select>
+        </label>
+        <label>
+          Início: <input type="date" id="startDate" />
+        </label>
+        <label>
+          Fim: <input type="date" id="endDate" />
+        </label>
+        <button id="applyFilters">Aplicar</button>
+        <span id="status" class="muted"></span>
+      </div>
+
+      <table id="metricsTable">
+        <thead id="thead"></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 - Dashboard</p>
+  </footer>
+
+  <script src="./dashboard.js" defer></script>
+</body>
+</html>
+
+
