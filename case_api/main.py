@@ -19,9 +19,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Carrega a leitura do arquivo fora da função, para melhorar a performance ---
-users_df = pd.read_csv("users.csv")
-metrics_df = pd.read_csv("metrics.csv")
 
 
 
