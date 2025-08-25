@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, Column, String, Integer, Float
 from sqlalchemy.orm import declarative_base
 
+db = create_engine("sqlite:///database/banco.db")
 Base = declarative_base()
 
 class Usuario(Base):
@@ -10,13 +11,6 @@ class Usuario(Base):
     email = Column("email", String, nullable=False, unique=True)
     password = Column("password", String, nullable=False)
     role = Column("role", String)
-
-    # Caso fosse necessário a criação de usuários
-    def __init__ (self, username, email, password, role):
-        self.username = username
-        self.email = email
-        self.password = password
-        self.role = role
 
 class Metrics(Base):
     __tablename__ = "metricas"
