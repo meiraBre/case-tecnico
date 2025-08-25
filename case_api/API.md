@@ -163,7 +163,7 @@ Acesse: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ## 7. Utilização de IA
 
-##### A API foi desenvolvida com o suporte de **IA (ChatGPT)** para auxílio em boas práticas de organização, escrita de documentação e estruturação do código. Todo o código e decisões técnicas foram validados manualmente.
+#### A API foi desenvolvida com o suporte de **IA (ChatGPT)** para auxílio em boas práticas de organização, escrita de documentação e estruturação do código. Todo o código e decisões técnicas foram validados manualmente.
 ---
 
 
