@@ -1,52 +1,63 @@
 from fastapi import APIRouter
-from data import metrics_df
+from database.db import get_engine
+from sqlalchemy import text
 import pandas as pd
 
 metrics_router = APIRouter(prefix="/metrics", tags=["metrics"])
 
-# --- Endpoint para listar métricas ---
+ALLOWED_ORDER_COLS = {
+    "account_id", "campaign_id", "cost_micros", "clicks", "conversions",
+    "impressions", "interactions", "date" 
+}
+
 @metrics_router.get("/")
 def get_metrics(
     role: str,
     order_by: str = None,
-    start_date: str = None,
-    end_date: str = None,
+    start_date: str = None,  # formato YYYY-MM-DD
+    end_date: str = None,    # formato YYYY-MM-DD
     limit: int = None,
     desc: bool = False
 ):
     """
-    Retorna métricas em formato JSON.
-    - role: 'admin' ou 'user' (controla visualização de cost_micros)
-    - order_by: coluna para ordenar
-    - start_date / end_date: filtrar por intervalo de datas
-    - limit: quantidade máxima de registros
-    - desc: se True, ordena de forma decrescente
+    Lê direto do banco (tabela 'metricas'), aplica filtros/ordenação/limite
+    e remove 'cost_micros' para quem não é admin.
     """
 
-    df = metrics_df.copy()
+    engine = get_engine()
 
-    # --- Garantir que coluna "date" é datetime ---
-    df["date"] = pd.to_datetime(df["date"], errors="coerce").dt.date  # 🔥 só a data
+    # 1) Monta SQL base
+    sql = "SELECT * FROM metricas WHERE 1=1"
+    params = {}
 
-    # --- Filtro por data ---
+    # 2) Filtros de data (deixe as colunas no formato YYYY-MM-DD no banco)
     if start_date:
-        start_date = pd.to_datetime(start_date).date()
-        df = df[df["date"] >= start_date]
-
+        sql += " AND date >= :start_date"
+        params["start_date"] = start_date
     if end_date:
-        end_date = pd.to_datetime(end_date).date()
-        df = df[df["date"] <= end_date]
+        sql += " AND date <= :end_date"
+        params["end_date"] = end_date
 
-    # --- Ordenação por coluna ---
-    if order_by and order_by in df.columns:
-        df = df.sort_values(by=order_by, ascending=not desc)
+    # 3) Ordenação segura (só por colunas permitidas)
+    if order_by and order_by in ALLOWED_ORDER_COLS:
+        direction = "DESC" if desc else "ASC"
+        sql += f" ORDER BY {order_by} {direction}"
 
-    # --- Controle de permissão ---
+    # 4) Limite
+    if limit:
+        sql += " LIMIT :limit"
+        params["limit"] = int(limit)
+
+    # 5) Executa e carrega em DataFrame (fica fácil de tratar tipos)
+    with engine.connect() as conn:
+        df = pd.read_sql_query(text(sql), conn, params=params)
+
+    # 6) Normaliza 'date' como date (opcional, útil para o front)
+    if "date" in df.columns:
+        df["date"] = pd.to_datetime(df["date"], errors="coerce").dt.date
+
+    # 7) Permissões: esconde cost_micros para não-admin
     if role != "admin" and "cost_micros" in df.columns:
         df = df.drop(columns=["cost_micros"])
-
-    # --- Limit (pagina os resultados) ---
-    if limit:
-        df = df.head(limit)
 
     return df.to_dict(orient="records")
