@@ -1,23 +1,30 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from schemas import LoginData
-from data import users_df
+from sqlalchemy import text
+from database.db import get_engine
 
 login_router = APIRouter(prefix="/login", tags=["login"])
 
-# --- Função que valida usuário ---
-def authenticate_user(login_data: LoginData):
-    email = login_data.email
-    password = login_data.password  
-
-    user = users_df[(users_df["email"] == email) & (users_df["password"] == password)]
-    if not user.empty:
-        return user.iloc[0]["role"]
-    return None
-
-# --- Endpoint de Login ---
 @login_router.post("/")
 def login(data: LoginData):
-    role = authenticate_user(data)
-    if not role:
+    """
+    Faz login consultando o banco (tabela 'usuarios').
+    Retorna a role do usuário (admin/user) se as credenciais forem válidas.
+    """
+    engine = get_engine()
+    with engine.connect() as conn:
+        row = conn.execute(
+            text("""
+                SELECT role
+                FROM usuarios
+                WHERE email = :email AND password = :password
+                LIMIT 1
+            """),
+            {"email": data.email, "password": data.password}
+        ).fetchone()
+
+    if not row:
         raise HTTPException(status_code=401, detail="Credenciais inválidas")
+
+    role = row[0]
     return {"message": "Login realizado com sucesso!", "role": role}
