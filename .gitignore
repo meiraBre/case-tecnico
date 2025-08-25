@@ -4,3 +4,10 @@ __pycache__/
 
 # Ignorar arquivos CSV grandes
 case_api/metrics.csv
+
+# Arquivos de banco local
+*.db
+*.sqlite3
+
+# Alembic cache
+alembic/__pycache__/
