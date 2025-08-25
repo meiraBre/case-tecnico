@@ -1,14 +1,13 @@
-// dashboard.js
 document.addEventListener("DOMContentLoaded", () => {
   const role = localStorage.getItem("role") || "user";
 
   const orderByEl = document.getElementById("orderBy");
   const startDateEl = document.getElementById("startDate");
   const endDateEl   = document.getElementById("endDate");
-  const applyBtn    = document.getElementById("applyFilters"); // <- bate com HTML
+  const applyBtn    = document.getElementById("applyFilters"); 
   const statusEl    = document.getElementById("status");
   const thead       = document.getElementById("thead");
-  const tbody       = document.getElementById("tbody");        // <- bate com HTML
+  const tbody       = document.getElementById("tbody");      
 
   async function fetchMetrics() {
     try {
