@@ -1,4 +1,3 @@
-# Monks - Case Técnico
 <h1 align="center">Monks - Case Técnico</h1>
 
 ## 📌 Introdução
@@ -55,7 +54,8 @@ Projeto desenvolvido entre os dias **19 e 26 de agosto**. Este case técnico env
 5. **Rodar a API**:
     ```bash
     uvicorn main:app --reload
-    - A API estará disponível em: http://127.0.0.1:8000 Documentação interativa: http://127.0.0.1:8000/docs
+
+- A API estará disponível em: http://127.0.0.1:8000 Documentação interativa: http://127.0.0.1:8000/docs
 
 6. **Rodar o Frontend Abra os arquivos HTML diretamente no navegador**:
 - Página de Login → frontend/login.html
@@ -63,6 +63,7 @@ Projeto desenvolvido entre os dias **19 e 26 de agosto**. Este case técnico env
 - Login Utilize os usuários já cadastrados no arquivo users.csv
 
 ## 🗂️ Estrutura do Projeto
+```bash
 case_api/
 ├── alembic/                  # Migrações do banco de dados
 ├── database/                 # Conexão, models e scripts relacionados ao DB
@@ -88,6 +89,7 @@ case_api/
 ├── requirements.txt          # Dependências do projeto
 ├── README.md                 # Documentação do projeto
 └── .gitignore                # Arquivos/pastas ignorados pelo Git
+```
 
 ## 💡 Possíveis Melhorias Futuras
 - Implementar login com JWT e autenticação por token
@@ -96,8 +98,8 @@ case_api/
 - Reestruturar o visual da página para refletir melhor a identidade da empresa
 
 ## 📚 Referências
-[Documentação FastAPI](http://127.0.0.1:8000/docs#/metrics/get_metrics_metrics__get)
-[Curso de FastAPI e Backend Completo](https://www.hashtagtreinamentos.com/curso-de-fastapi-python)
+- [Documentação FastAPI](http://127.0.0.1:8000/docs#/metrics/get_metrics_metrics__get)
+- [Curso de FastAPI e Backend Completo](https://www.hashtagtreinamentos.com/curso-de-fastapi-python)
 
 ## 📞 Contato
 Brenda Meira 🔗[LinkedIn](https://www.linkedin.com/in/meirabrenda540/)
