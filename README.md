@@ -8,7 +8,6 @@ Projeto desenvolvido entre os dias **19 e 26 de agosto**. Este case técnico env
 - Controle de versões com Alembic
 - Front-end básico com página de login e dashboard
 - Funcionalidades de filtro e ordenação de dados
----
 
 ## ✅ Requisitos Funcionais
 
@@ -17,12 +16,10 @@ Projeto desenvolvido entre os dias **19 e 26 de agosto**. Este case técnico env
 - [x] Filtro de dados por data
 - [x] Ordenação por qualquer coluna
 - [x] Exibição da coluna `cost_micros` apenas para usuários com papel `admin`
----
 
 ## ⚙️ Requisitos Não Funcionais
 
 - [x] API escrita em Python
----
 
 ## 🧰 Tecnologias Utilizadas
 
@@ -31,7 +28,6 @@ Projeto desenvolvido entre os dias **19 e 26 de agosto**. Este case técnico env
 - **Frontend**: HTML, CSS, JavaScript.
 - **Organização**: Notion (para organização de tarefas diárias e metas para entregar o case dentro do prazo).
 - **Suporte**: ChatGPT para auxílio em bugs e melhorias. 
----
 
 ## 🚀 Como Executar o Projeto
 
