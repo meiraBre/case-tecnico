@@ -92,7 +92,7 @@ case_api/
 - Armazenar senhas com hash no banco de dados
 - Migrar banco para servidor dedicado
 - Reestruturar o visual da página para refletir melhor a identidade da empresa
-- Colocar uma opção para o próprio usuário selecionar a quantidade de itens (linhas das colunas)nque deseja visualizar na página
+- Colocar uma opção para o próprio usuário selecionar a quantidade de itens (linhas das colunas) que deseja visualizar na página
 
 ## 📚 Referências
 - [Documentação FastAPI](https://fastapi.tiangolo.com/)
