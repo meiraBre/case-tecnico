@@ -99,5 +99,7 @@ case_api/
 - [Curso de FastAPI e Backend Completo](https://www.hashtagtreinamentos.com/curso-de-fastapi-python)
 
 ## 📞 Contato
-Brenda Meira 🔗[LinkedIn](https://www.linkedin.com/in/meirabrenda540/)
+Brenda Meira 
+- 🔗[LinkedIn](https://www.linkedin.com/in/meirabrenda540/)
+- Email: bremeirah@gmail.com
 
