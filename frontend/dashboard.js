@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       thead.innerHTML = "";
       tbody.innerHTML = "";
 
-      let url = `http://127.0.0.1:8000/metrics/?role=${encodeURIComponent(role)}&limit=10`;
+      let url = `http://127.0.0.1:8000/metrics/?role=${encodeURIComponent(role)}&limit=30`;
 
       const startDate = startDateEl.value; // <input type="date"> → yyyy-mm-dd
       const endDate   = endDateEl.value;
@@ -45,7 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
       tbody.innerHTML = data.map(row =>
         "<tr>" + cols.map(c => {
           let value = row[c];
-          if (c === "date" && value) value = new Date(value).toLocaleDateString("pt-BR");
+          if (c === "date" && value) {
+            const [y, m, d] = value.split("T")[0].split("-");
+            value = `${d}/${m}/${y}`;
+          }
           return `<td>${value ?? ""}</td>`;
         }).join("") + "</tr>"
       ).join("");

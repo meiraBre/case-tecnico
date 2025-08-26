@@ -13,7 +13,7 @@
 - A área de engenharia desempenha um papel crucial no desenvolvimento de software e na criação de soluções tecnológicas tanto para os clientes quanto para a empresa. Este case técnico propõe a construção construir uma aplicação web para gestores de uma agência de Marketing Digital, onde serão exibidos dados de performance de diversas contas da agência. Nesse arquivo explico como foi a construção da API e como você pode testa-la.
 ---
 
-## 1. Passo a passo da construção da API e ferramentas utilizadas
+## Passo a passo da construção da API e ferramentas utilizadas
 
 ### Passo 1 - Estrutura inicial do projeto
 * Criar pasta do projeto: `case_api/`
@@ -42,7 +42,7 @@ uvicorn main:app --reload
 * Documentação ReDoc: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
 ---
 
-## 2. Resolução da questão do arquivo CSV grande
+## Resolução da questão do arquivo CSV grande
 Para evitar subir arquivos grandes no repositório:
 
 1. Criar um `.gitignore` com:
@@ -66,7 +66,7 @@ Para evitar subir arquivos grandes no repositório:
 
 ---
 
-## 3. Requisitos da API
+## Requisitos da API
 
 ### Requisitos funcionais
 * Autenticação de usuários por **email** e **senha**.
@@ -77,7 +77,7 @@ Para evitar subir arquivos grandes no repositório:
 * A API deve ser escrita em python.
 ---
 
-## 4. Documentação dos Endpoints
+## Documentação dos Endpoints
 
 ### 🔑 Autenticação
 
@@ -114,7 +114,7 @@ Para evitar subir arquivos grandes no repositório:
 
 ---
 
-## 5. Como testar a API
+## Como testar a API
 
 ### Usando navegador
 
