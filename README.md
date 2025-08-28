@@ -98,8 +98,11 @@ case_api/
 - [Documentação FastAPI](https://fastapi.tiangolo.com/)
 - [Curso de FastAPI e Backend Completo](https://www.hashtagtreinamentos.com/curso-de-fastapi-python)
 
+## ⚠️ Aviso
+Este projeto foi desenvolvido exclusivamente para fins de estudo e avaliação técnica durante um processo seletivo.
+Não possui vínculo oficial com nenhuma empresa.
+
 ## 📞 Contato
 Brenda Meira 
 - 🔗[LinkedIn](https://www.linkedin.com/in/meirabrenda540/)
 - Email: bremeirah@gmail.com
-
