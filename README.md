@@ -1,7 +1,7 @@
-<h1 align="center">Resolução de um Case Técnico</h1>
+<h1 align="center">Aplicação Web para Visualização de Dados de Performance</h1>
 
 ## 📌 Introdução
-Projeto desenvolvido entre os dias **19 e 26 de agosto**. Este case técnico envolve:
+Projeto (para um case técnico) desenvolvido entre os dias **19 e 26 de agosto**. Este case técnico envolve:
 
 - Criação de uma API em Python com FastAPI
 - Banco de dados utilizando SQLAlchemy e SQLite
