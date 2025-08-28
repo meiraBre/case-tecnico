@@ -10,7 +10,8 @@
 ---
 
 ## Contextualização
-- A área de engenharia desempenha um papel crucial no desenvolvimento de software e na criação de soluções tecnológicas tanto para os clientes quanto para a empresa. Este case técnico propõe a construção construir uma aplicação web para gestores de uma agência de Marketing Digital, onde serão exibidos dados de performance de diversas contas da agência. Nesse arquivo explico como foi a construção da API e como você pode testa-la.
+- Esta aplicação foi desenvolvida como parte de um case técnico, com o objetivo de criar uma solução web para gestores de uma agência de Marketing Digital, possibilitando a visualização de dados de performance de diferentes contas.
+O projeto inclui a construção de uma API responsável por estruturar e disponibilizar os dados ao frontend. Neste documento, descrevo as principais decisões técnicas e apresento as instruções para execução e testes da solução.
 ---
 
 ## Passo a passo da construção da API e ferramentas utilizadas
