@@ -1,4 +1,4 @@
-<h1 align="center">Monks - Case Técnico</h1>
+<h1 align="center">Resolução de um Case Técnico</h1>
 
 ## 📌 Introdução
 Projeto desenvolvido entre os dias **19 e 26 de agosto**. Este case técnico envolve:
